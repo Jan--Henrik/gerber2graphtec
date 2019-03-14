@@ -45,6 +45,8 @@ def main():
     #
     # check dependencies
     #
+
+    allowed_inkscape_files = ('svg','dxf')
     
     if find_in_path("pstoedit") is None:
         print("FATAL ERROR: Could not find 'pstoedit' in your PATH. Exiting")
@@ -53,6 +55,10 @@ def main():
     if find_in_path("gerbv") is None:
         print("ERROR: Could not find 'gerbv' in your PATH. Exiting")
         sys.exit(1)
+
+    if find_in_path("inkscape") is None and input_filename[-3:].lower() in allowed_inkscape_files:
+        print("ERROR: Could not find 'inkscape' in your PATH. Exiting")
+        sys.exit(1) 
 
     #
     # convert file to pic format
@@ -70,6 +76,9 @@ def main():
     input_filename = args.input_filename
     if input_filename[-3:].lower()=='pdf':
       os.system('pstoedit -f pic "%s" "%s" 2>/dev/null' % (input_filename,temp_pic))
+    elif input_filename[-3:].lower() in allowed_inkscape_files:
+      os.system("inkscape -f %s --export-pdf=%s" % (input_filename,temp_pdf))
+      os.system("pstoedit -f pic %s %s 2>/dev/null" % (temp_pdf,temp_pic))
     else:
       os.system('gerbv --export=pdf --output="%s" --border=20 "%s"' % (temp_pdf,input_filename))
       os.system('pstoedit -f pic "%s" "%s" 2>/dev/null' % (temp_pdf,temp_pic))
