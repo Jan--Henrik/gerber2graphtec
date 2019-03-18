@@ -1,6 +1,6 @@
 # Gerber2Graphtec
 
-Tool for cutting accurate SMT stencils on a Graphtec cutter (e.g. Silhouette Cameo or Portrait) from gerber files.  Techniques include separately drawn line segments (no complex paths), antibacklash, drag-knife-angle "training", and multiple passes.  This produces stencils usable down to approximately 0.5 mm pitch (QFP/QFN) and 0201 discrete components, or perhaps even slightly better; but it is slower than normal cutting.
+Tool for cutting accurate SMT stencils on a Graphtec cutter (e.g. Silhouette Cameo or Portrait) from gerber, dxf or svg files.  Techniques include separately drawn line segments (no complex paths), antibacklash, drag-knife-angle "training", and multiple passes.  This produces stencils usable down to approximately 0.5 mm pitch (QFP/QFN) and 0201 discrete components, or perhaps even slightly better; but it is slower than normal cutting.
 
 
 ## Usage:
